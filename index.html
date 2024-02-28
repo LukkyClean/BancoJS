@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco</title>
+</head>
+<body>
+    <form action="">
+        <strong>Saldo: </strong>
+        <input type="text" id="saldo" readonly placeholder="Saldo">
+        <br><br>
+        <strong>Saque: </strong>
+        <input type="text" id="saque" placeholder="Saque"><br>
+        <button type="button" onclick="sacarSaldo()">Sacar</button><br>
+        <strong>Deposito:</strong>
+        <input type="text" id="deposito" placeholder="Deposito"><br>
+        <button type="button" onclick="depositar()">Depositar</button>
+    </form>
+    <script>
+
+        var saldoIncial = parseFloat(window.prompt("Digite o saldo inicial: "));
+        var saldo = saldoIncial;
+        document.getElementById("saldo").value = (saldo+"R$");
+        
+        function sacarSaldo(){
+            var sacar = parseFloat(document.getElementById("saque").value);
+            if(sacar <= saldo){
+                saldo -= sacar;
+                document.getElementById("saldo").value = (saldo+"R$");
+                alert("Saque concluido com sucesso! Saldo atual: "+saldo+"R$");
+            }else{
+                alert("Não é possivel fazer o saque! Saldo insuficiente.")
+            }
+        }
+
+        function depositar(){
+            var depositar = parseFloat(document.getElementById("deposito").value);
+            if(depositar > 0){
+                saldo += depositar;
+                document.getElementById("saldo").value = (saldo+"R$");
+                alert("Deposito concluido com sucesso! Saldo atual: "+saldo+"R$");
+            }else{
+                alert("Valor invalido!");
+            }
+        }
+    </script>
+</body>
+</html>
